@@ -13,6 +13,7 @@ projection(occs) <- CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs
 occs.in <- intersect(occs, regions)
 occs.in <- as.data.frame(occs.in)
 locs <- dplyr::select(occs.in, -cat, -d, -longitude, -latitude)
+locs <- rename(locs, longitude = grid_long, latitude = grid_lat)
 write_csv(locs, "data/locs_30m.csv")
 
 # library(dplyr)
