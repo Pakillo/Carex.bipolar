@@ -1,0 +1,60 @@
+---
+title: "Occurrence maps"
+author: "Francisco Rodriguez-Sanchez"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.keep = "last")
+knitr::opts_knit$set(root.dir = "../")
+```
+
+
+
+```{r}
+library(rSDM)
+```
+
+
+```{r}
+occs <- as.data.frame(readr::read_csv("./data/locs_30m.csv"))
+```
+
+
+## All species
+```{r}
+occmap(occs, bg = "google", type = "satellite", pcol = "red")
+```
+
+
+## C. macloviana
+```{r}
+occmap(occs[occs$species == "macloviana", ], bg = "google", type = "satellite", pcol = "red")
+```
+
+
+## C. magellanica
+```{r}
+occmap(occs[occs$species == "magellanica", ], bg = "google", type = "satellite", pcol = "red")
+```
+
+
+## C. microglochin
+```{r}
+occmap(occs[occs$species == "microglochin", ], bg = "google", type = "satellite", pcol = "red")
+```
+
+
+## C. canescens
+```{r}
+occmap(occs[occs$species == "canescens", ], bg = "google", type = "satellite", pcol = "red")
+```
+
+
+## C. maritima
+```{r}
+occmap(occs[occs$species == "maritima", ], bg = "google", type = "satellite", pcol = "red")
+```
+
+

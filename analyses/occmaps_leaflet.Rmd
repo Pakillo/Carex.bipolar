@@ -1,0 +1,60 @@
+---
+title: "Occurrence maps"
+author: "Francisco Rodriguez-Sanchez"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "../")
+```
+
+
+
+```{r}
+library(rSDM)
+```
+
+
+```{r}
+occs <- as.data.frame(readr::read_csv("./data/locs_30m.csv"))
+```
+
+
+## All species
+```{r}
+occmap(occs, bg = 'leaflet', pcol = "black")
+```
+
+
+## C. macloviana
+```{r}
+occmap(occs[occs$species == "macloviana", ], bg = "leaflet", pcol = "black")
+```
+
+
+## C. magellanica
+```{r}
+occmap(occs[occs$species == "magellanica", ], bg = "leaflet", pcol = "black")
+```
+
+
+## C. microglochin
+```{r}
+occmap(occs[occs$species == "microglochin", ], bg = "leaflet", pcol = "black")
+```
+
+
+## C. canescens
+```{r}
+occmap(occs[occs$species == "canescens", ], bg = "leaflet", pcol = "black")
+```
+
+
+## C. maritima
+```{r}
+occmap(occs[occs$species == "maritima", ], bg = "leaflet", pcol = "black")
+```
+
+
