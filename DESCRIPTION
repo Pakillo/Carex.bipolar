@@ -1,8 +1,8 @@
 Package: Carex.bipolar
-Title: What the Package Does (one line, title case)
+Title: SDM analyses of bipolar Carex species
 Version: 0.0.0.9000
 Authors@R: person('Francisco', 'Rodriguez-Sanchez', email='f.rodriguez.sanc@gmail.com', role = c('aut', 'cre'))
-Description: What the package does (one paragraph).
+Description: SDM analyses of bipolar Carex species.
 Depends: R (>= 3.3.3)
 License: What license is it under?
 Encoding: UTF-8
