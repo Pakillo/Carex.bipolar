@@ -8,3 +8,5 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 Suggests: testthat
+URL: https://github.com/Pakillo/Carex.bipolar
+BugReports: https://github.com/Pakillo/Carex.bipolar/issues
