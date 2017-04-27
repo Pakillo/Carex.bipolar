@@ -17,6 +17,7 @@ library(raster)
 andes <- shapefile("data-raw/bioregions/regiones_biogeo_andes3.shp")
 nearctic <- shapefile("data-raw/bioregions/regiones_biogeo_andes2_nearcti.shp")
 regions <- bind(andes, nearctic)
+regions <- crop(regions, extent(c(-180, 0, -90, 90)))
 
 #shapefile(regions, filename = "data-raw/regions.shp")
 save(regions, file = "data/regions.rda")
