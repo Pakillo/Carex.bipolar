@@ -26,5 +26,9 @@ for (i in spp) {
 #### Fig 1: occurrence map ####
 render("manuscript/figures/Fig1_occmap.Rmd")
 
+#### Fig Present Suitability ####
+render("manuscript/figures/Fig_suitability_present_code.Rmd")
 
+#### Fig Future Suitability ####
+render("manuscript/figures/Fig_suitability_2050_code.Rmd")
 

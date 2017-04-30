@@ -1,0 +1,55 @@
+---
+title: 'Fig. Future Suitability'
+author: "Francisco Rodriguez-Sanchez"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+
+library(rprojroot)
+root <- find_rstudio_root_file()
+
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE, 
+                      fig.path = paste0(root, "/manuscript/figures/"))
+#knitr::opts_knit$set(root.dir = "../")
+```
+
+```{r}
+library(raster)
+
+```
+
+
+```{r}
+spp <- c("canescens", "macloviana", "magellanica", "maritima", 
+         "microglochin", "allspp")
+ras <- list()
+for (i in 1:6) {
+  ras[i] <- raster(paste0(root, "/analyses/maxent/", spp[i], "/", spp[i], "_proj_fut.grd"))
+}
+futu.suitab <- stack(ras)
+names(futu.suitab) <- c(spp[1:5], "all species")
+```
+
+
+```{r}
+library(rnaturalearth)
+borders <- ne_coastline(scale = 'small', returnclass = "sp")
+```
+
+
+```{r Fig_suitab_future, out.height='7in', out.width='9in'}
+library(rasterVis)
+levelplot(futu.suitab, par.settings = viridisTheme, at = seq(0, 1, 0.1)) +
+  layer(sp.lines(borders, lwd = 0.8, col = 'darkgray'))
+```
+
+
+```{r}
+devtools::session_info()
+```
+
+
+
