@@ -1,0 +1,75 @@
+---
+title: 'Fig 1: Occurrence map'
+author: "Francisco Rodriguez-Sanchez"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+knitr::opts_knit$set(root.dir = "../")
+```
+
+```{r}
+library(raster)
+```
+
+```{r}
+natearth <- brick(unzip("C:/Users/FRS/Dropbox/GIS.layers/NaturalEarth/CrossBlended_Hypso_ShadedRelief_50m.zip", exdir = tempdir())[4])
+ne <- crop(natearth, extent(c(-175, -15, -60, 90)))
+ne.redux <- aggregate(ne, fact = 8)
+
+```
+
+
+```{r}
+load("../data/regions.rda")
+#plot(regions, add = TRUE, border = "black")
+```
+
+```{r}
+locs <- as.data.frame(readr::read_csv("../data/locs_30m.csv"))
+coordinates(locs) <- c("longitude", "latitude")
+projection(locs) <- CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
+#plot(locs, add = TRUE)
+```
+
+
+
+```{r}
+library(RColorBrewer)
+mypal <- brewer.pal(5, "Set1")
+
+pdf("figures/Fig1.pdf", paper = "a4")
+plotRGB(ne.redux)
+plot(regions, add = TRUE, border = "dim gray", lwd = 2)
+#spp <- unique(locs$species)
+spp <- c("maritima", "microglochin", "canescens", "magellanica", "macloviana")
+for (i in 1:5) {
+  points(locs[locs$species == spp[i], ], pch = 21, bg = mypal[i], col = "gray20", cex = 1)
+}
+legend(x = -160, y = 10, legend = sort(spp), pt.bg = mypal,
+       pch = 21, box.col = "white", title = "Carex species", bg = "white")
+dev.off()
+
+```
+
+
+
+
+```{r eval=FALSE}
+library(ggplot2)
+library(mapr)
+occs <- locs[, c("species")]
+names(occs) <- "name"
+basemap <- map_ggmap(occs, zoom = 2, size = 2)
+basemap + xlim(-165, -22) + ylim(-50, 95)
+```
+
+```{r}
+devtools::session_info()
+```
+
+
+
