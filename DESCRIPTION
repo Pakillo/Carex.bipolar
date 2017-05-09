@@ -17,7 +17,8 @@ Imports:
     raster,
     rasterVis,
     readr,
-    rnaturalearth
+    rnaturalearth,
+    rSDM
 Suggests: 
     devtools,
     knitr,
