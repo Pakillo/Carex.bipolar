@@ -1,3 +1,10 @@
+#' Load present climate
+#'
+#' Load current climate layers from my hard drive (note path is hard-coded).
+#'
+#' @return A raster stack, cropped by bioregions.
+#' @export
+#' @import raster
 read_presclim <- function() {
   bioclim.pres <- list.files("C:/Users/FRS/Dropbox/GIS.layers/WORLDCLIM/Present/bio_10m/",
                              full.names = TRUE, pattern = ".bil")
@@ -11,6 +18,16 @@ read_presclim <- function() {
 
 
 
+#' Read future climate layers
+#'
+#' @details Note path to GIS layers is hard-coded.
+#'
+#' @param gcmdata character Model and scenario (e.g. "miroc5_rcp45_bio_2050").
+#'
+#' @return A raster stack, cropped by bioregions.
+#' @export
+#' @import raster
+#' @importFrom gtools mixedsort
 read_futclim <- function(gcmdata) {  # e.g. miroc <- read_futclim("miroc5_rcp45_bio_2050")
 
   ras <- stack(gtools::mixedsort(
@@ -23,6 +40,13 @@ read_futclim <- function(gcmdata) {  # e.g. miroc <- read_futclim("miroc5_rcp45_
 }
 
 
+#' Crop raster by bioregions
+#'
+#' @param ras Raster* object
+#'
+#' @return Cropped Raster* object.
+#' @export
+#' @import raster
 crop_bioregions <- function(ras) {
 
   load("./data/regions.rda")
@@ -33,6 +57,14 @@ crop_bioregions <- function(ras) {
 }
 
 
+#' Combine future predictions from a Maxent model
+#'
+#' @param model A maxent model, as created by dismo.
+#'
+#' @return A rasterstack.
+#' @export
+#' @import raster
+#' @import dismo
 combine_pred <- function(model) {
 
   ## load future climate
@@ -62,6 +94,14 @@ combine_pred <- function(model) {
 
 
 
+#' Aggregate future predictions
+#'
+#' @param species character Species name, as specified when fitting Maxent models.
+#'
+#' @return A RasterLayer with the predicted average suitability per species.
+#' @export
+#' @import raster
+#' @import rasterVis
 aggregate_preds <- function(species) {
 
   preds <- brick(paste0("./analyses/maxent/", species, "/", species, "_proj_fut.grd"))
