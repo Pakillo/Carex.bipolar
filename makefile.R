@@ -1,4 +1,6 @@
-source("R/helper.R")   # substitute this by packaging in the end!
+
+
+library(Carex.bipolar)  # load to access package functions
 
 
 ### Data prep (run only once) ###

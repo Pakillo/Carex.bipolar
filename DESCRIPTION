@@ -1,12 +1,28 @@
 Package: Carex.bipolar
 Title: SDM analyses of bipolar Carex species
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: person('Francisco', 'Rodriguez-Sanchez', email='f.rodriguez.sanc@gmail.com', role = c('aut', 'cre'))
-Description: SDM analyses of bipolar Carex species.
+Description: Code used for SDM analyses of bipolar Carex species in 
+    Villaverde T, González-Moreno P, Rodríguez-Sánchez F & Escudero M. 
+    Niche shifts after long-distance dispersal events in bipolar sedges 
+    (*Carex*, Cyperaceae).
 Depends: R (>= 3.3.3)
-License: What license is it under?
+License: CC-BY 4.0
 Encoding: UTF-8
 LazyData: true
-Suggests: testthat
+Imports:
+    dismo,
+    dplyr,
+    gtools,
+    raster,
+    rasterVis,
+    readr,
+    rnaturalearth
+Suggests: 
+    devtools,
+    knitr,
+    rmarkdown,
+    rprojroot
 URL: https://github.com/Pakillo/Carex.bipolar
 BugReports: https://github.com/Pakillo/Carex.bipolar/issues
+RoxygenNote: 6.0.1
