@@ -58,3 +58,29 @@ combine_pred <- function(model) {
 
 
 }
+
+
+
+
+aggregate_preds <- function(species) {
+
+  preds <- brick(paste0("./analyses/maxent/", species, "/", species, "_proj_fut.grd"))
+  print(levelplot(preds, par.settings = viridisTheme, at = seq(0, 1, 0.1),
+            main = paste0("Carex ", species, ": Suitability 2050 RCP45")) +
+    layer(sp.lines(borders, lwd = 0.8, col = 'darkgray')))
+
+  ### calculate average and sd of all 5 layers
+  preds.avg <- mean(preds)
+  beginCluster()
+  preds.sd <- calc(preds, sd)  # sloooow
+  endCluster()
+  preds.summary <- stack(preds.avg, preds.sd)
+  names(preds.summary) <- c("mean", "sd")
+  print(levelplot(preds.summary, par.settings = viridisTheme, at = seq(0, 1, 0.1),
+            main = paste0("Carex ", species, ": Suitability 2050 RCP45")) +
+    layer(sp.lines(borders, lwd = 0.8, col = 'darkgray')))
+
+  names(preds.avg) <- species
+  return(preds.avg)
+
+}
