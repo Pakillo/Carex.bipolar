@@ -102,9 +102,12 @@ combine_pred <- function(model) {
 #' @export
 #' @import raster
 #' @import rasterVis
+#' @importFrom rprojroot find_rstudio_root_file
 aggregate_preds <- function(species) {
 
-  preds <- brick(paste0("./analyses/maxent/", species, "/", species, "_proj_fut.grd"))
+  root <- rprojroot::find_rstudio_root_file()
+
+  preds <- brick(paste0(root, "/analyses/maxent/", species, "/", species, "_proj_fut.grd"))
   print(levelplot(preds, par.settings = viridisTheme, at = seq(0, 1, 0.1),
             main = paste0("Carex ", species, ": Suitability 2050 RCP45")) +
     layer(sp.lines(borders, lwd = 0.8, col = 'darkgray')))
