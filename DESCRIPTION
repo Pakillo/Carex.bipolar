@@ -1,6 +1,6 @@
 Package: Carex.bipolar
 Title: SDM analyses of bipolar Carex species
-Version: 0.0.3
+Version: 0.0.4
 Authors@R: person('Francisco', 'Rodriguez-Sanchez', email='f.rodriguez.sanc@gmail.com', role = c('aut', 'cre'))
 Description: Code used for SDM analyses of bipolar Carex species in 
     Villaverde T, González-Moreno P, Rodríguez-Sánchez F & Escudero M. 

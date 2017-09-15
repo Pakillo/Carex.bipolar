@@ -60,19 +60,32 @@ crop_bioregions <- function(ras) {
 #' Combine future predictions from a Maxent model
 #'
 #' @param model A maxent model, as created by dismo.
+#' @param scenario Character. Either "rcp45" or "rcp85".
 #'
 #' @return A rasterstack.
 #' @export
 #' @import raster
 #' @import dismo
-combine_pred <- function(model) {
+combine_pred <- function(model, scenario) {
 
   ## load future climate
-  ccsm <- read_futclim("ccsm4_rcp45_bio_2050")
-  gfdl <- read_futclim("gfdl-esm2g_rcp45_bio_2050")
-  giss <- read_futclim("giss-e2_rcp45_bio_2050")
-  hadgem <- read_futclim("hadgem2-es_rcp45_bio_2050")
-  miroc <- read_futclim("miroc5_rcp45_bio_2050")
+
+  if (scenario == "rcp45") {
+    ccsm <- read_futclim("ccsm4_rcp45_bio_2050")
+    gfdl <- read_futclim("gfdl-cm3_rcp45_bio_2050")
+    giss <- read_futclim("giss-e2_rcp45_bio_2050")
+    hadgem <- read_futclim("hadgem2-es_rcp45_bio_2050")
+    miroc <- read_futclim("miroc5_rcp45_bio_2050")
+  }
+
+  if (scenario == "rcp85") {
+    ccsm <- read_futclim("ccsm4_rcp85_bio_2050")
+    gfdl <- read_futclim("gfdl-cm3_rcp85_bio_2050")
+    giss <- read_futclim("giss-e2_rcp85_bio_2050")
+    hadgem <- read_futclim("hadgem2-es_rcp85_bio_2050")
+    miroc <- read_futclim("miroc5_rcp85_bio_2050")
+  }
+
 
 
   ## projections

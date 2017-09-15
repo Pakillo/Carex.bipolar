@@ -76,10 +76,21 @@ writeRaster(pres.pred, filename = paste0("./analyses/maxent/", species, "/", spe
 
 
 # Project2future
-```{r project_future}
-fut.pred <- combine_pred(mod)
-plot(fut.pred)
-writeRaster(fut.pred, filename = paste0("./analyses/maxent/", species, "/", species, "_proj_fut.grd"),
+
+## RCP 4.5
+```{r project_rcp45}
+pred.rcp45 <- combine_pred(mod, "rcp45")
+plot(pred.rcp45)
+writeRaster(pred.rcp45, filename = paste0("./analyses/maxent/", species, "/", species, "_proj_rcp45.grd"),
+            overwrite = TRUE)
+```
+
+
+## RCP 8.5
+```{r project_rcp85}
+pred.rcp85 <- combine_pred(mod, "rcp85")
+plot(pred.rcp85)
+writeRaster(pred.rcp85, filename = paste0("./analyses/maxent/", species, "/", species, "_proj_rcp85.grd"),
             overwrite = TRUE)
 ```
 

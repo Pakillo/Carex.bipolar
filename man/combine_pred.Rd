@@ -4,10 +4,12 @@
 \alias{combine_pred}
 \title{Combine future predictions from a Maxent model}
 \usage{
-combine_pred(model)
+combine_pred(model, scenario)
 }
 \arguments{
 \item{model}{A maxent model, as created by dismo.}
+
+\item{scenario}{Character. Either "rcp45" or "rcp85".}
 }
 \value{
 A rasterstack.
