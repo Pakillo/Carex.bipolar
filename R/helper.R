@@ -50,7 +50,7 @@ read_futclim <- function(gcmdata) {  # e.g. miroc <- read_futclim("miroc5_rcp45_
 #' @import raster
 crop_bioregions <- function(ras) {
 
-  load("./data/regions.rda")
+  data(regions)
   ras.crop <- crop(ras, regions)
   ras.mask <- mask(ras.crop, regions)
   ras.mask
