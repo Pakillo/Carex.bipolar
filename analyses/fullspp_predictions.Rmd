@@ -1,0 +1,111 @@
+---
+title: "Full species (both N and S pops): Predictions based on best model"
+author: "Francisco Rodriguez-Sanchez"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, cache = TRUE)
+root <- rprojroot::find_rstudio_root_file()
+```
+
+
+## Load ENMeval results
+```{r}
+library(ENMeval)
+load(paste0(root, "/analyses/output/fullspp_ENMeval/", species, "_modeval.rda"))
+#modeval
+```
+
+
+## Define best model for each species
+
+After examining output of ENMeval for each species.
+
+```{r}
+if (species == "allspp") bestmodel <- "LQH_1.5"
+if (species == "canescens") bestmodel <- "LQH_2"
+if (species == "macloviana") bestmodel <- "LQ_1.5"
+if (species == "magellanica") bestmodel <- "LQ_1"
+if (species == "maritima") bestmodel <- "LQ_1.5"
+if (species == "microglochin") bestmodel <- "LQ_1"
+```
+
+
+## Select best Maxent model
+
+```{r}
+maxmod <- modeval@models[[which(modeval@results$settings == bestmodel)]]
+```
+
+
+## Response curves
+
+```{r fig.height=13}
+response(maxmod)
+```
+
+
+# Plot present suitability
+
+## Load occurrence data
+
+```{r}
+locs <- as.data.frame(readr::read_csv(file.path(root, "data/locs_30m.csv")))
+## Select only occurrences of this species (defined in makefile):
+if (species != "allspp") locs <- locs[locs$species == species, ]
+```
+
+### Load present bioclim rasters
+
+```{r load_presclim}
+bioclim.pres <- read_presclim()
+```
+
+
+## Calculate predictions for present
+
+```{r project_pres}
+## Raw Maxent values
+pres.pred.raw <- modeval@predictions[[bestmodel]]
+plot(pres.pred.raw, main = "Raw model predictions")
+
+## Logistic predictions
+pres.pred <- predict(maxmod, bioclim.pres, args = c("outputformat=logistic"))
+# Plot
+plot(pres.pred)
+points(locs$longitude, locs$latitude, col = "black", pch = 20, cex = 0.5)
+# Save
+writeRaster(pres.pred, filename = paste0(root, "/analyses/output/fullspp_predictions/", species, "/", species, "_proj_pres.grd"),
+            overwrite = TRUE)
+```
+
+
+# Project2future
+
+## RCP 4.5
+```{r project_rcp45}
+pred.rcp45 <- combine_pred(maxmod, "rcp45")
+plot(pred.rcp45)
+writeRaster(pred.rcp45, filename = paste0(root, "/analyses/output/fullspp_predictions/", species, "/", species, "_proj_rcp45.grd"),
+            overwrite = TRUE)
+```
+
+
+## RCP 8.5
+```{r project_rcp85}
+pred.rcp85 <- combine_pred(maxmod, "rcp85")
+plot(pred.rcp85)
+writeRaster(pred.rcp85, filename = paste0(root, "/analyses/output/fullspp_predictions/", species, "/", species, "_proj_rcp85.grd"),
+            overwrite = TRUE)
+```
+
+
+
+
+```{r}
+devtools::session_info()
+```
+
