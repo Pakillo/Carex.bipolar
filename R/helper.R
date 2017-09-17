@@ -90,11 +90,11 @@ combine_pred <- function(model, scenario) {
 
 
   ## projections
-  ccsm.proj <- predict(model, ccsm)
-  gfdl.proj <- predict(model, gfdl)
-  giss.proj <- predict(model, giss)
-  hadgem.proj <- predict(model, hadgem)
-  miroc.proj <- predict(model, miroc)
+  ccsm.proj <- predict(model, ccsm, args = c("outputformat=logistic"))
+  gfdl.proj <- predict(model, gfdl, args = c("outputformat=logistic"))
+  giss.proj <- predict(model, giss, args = c("outputformat=logistic"))
+  hadgem.proj <- predict(model, hadgem, args = c("outputformat=logistic"))
+  miroc.proj <- predict(model, miroc, args = c("outputformat=logistic"))
 
   projs <- stack(ccsm.proj, gfdl.proj, giss.proj, hadgem.proj, miroc.proj)
   names(projs) <- c("CCSM", "GFDL", "GISS", "HADGEM", "MIROC")
