@@ -1,0 +1,90 @@
+---
+title: "Full species (both N and S pops): Choosing best model with ENMeval"
+author: "Francisco Rodriguez-Sanchez"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE, cache = TRUE)
+root <- rprojroot::find_rstudio_root_file()
+```
+
+
+```{r}
+library(readr)
+library(dplyr)
+library(ENMeval)
+library(rSDM)
+```
+
+## Load data
+
+```{r}
+locs <- as.data.frame(read_csv(file.path(root, "data/locs_30m.csv")))
+bioclim <- as.data.frame(read_csv(file.path(root, "data/bioclim_pres_30m.csv")))
+```
+
+
+Select only occurrences of this species (defined in makefile):
+
+```{r}
+if (species != "allspp") locs <- locs[locs$species == species, ]
+```
+
+
+# Load present bioclim rasters
+
+```{r load_presclim}
+bioclim.pres <- read_presclim()
+```
+
+
+## Map
+
+```{r}
+rSDM::occmap(locs, ras = bioclim.pres[[1]], main = "Occurrences")  # Map
+```
+
+
+## ENMeval
+
+```{r enmeval}
+modeval <- ENMevaluate(occ = locs[, c("longitude", "latitude")], 
+                 env = bioclim.pres, 
+                 RMvalues = c(0.5, 1, 1.5, 2), 
+                 fc = c("LQ", "LQH"), 
+                 method = "randomkfold", kfolds = 10, 
+                 clamp = TRUE, 
+                 rasterPreds = TRUE,
+                 parallel = TRUE, numCores = 4)
+                 
+results <- modeval@results
+kable(results)
+eval.plot(results)
+maps <- modeval@predictions
+plot(maps)
+plot(maps[[which(results$delta.AICc == 0)]], main = "Models with lowest AICc")
+
+for (i in which(results$delta.AICc == 0)) {
+  response(modeval@models[[i]])
+}
+
+save(modeval, file = paste0(root, "/analyses/output/fullspp_ENMeval/", species, "_modeval.rda"))
+
+```
+
+
+
+
+
+```{r}
+rm(list = ls())
+```
+
+
+```{r}
+devtools::session_info()
+```
+
