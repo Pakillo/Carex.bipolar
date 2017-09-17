@@ -9,6 +9,7 @@ read_presclim <- function() {
   bioclim.pres <- list.files("C:/Users/FRS/Dropbox/GIS.layers/WORLDCLIM/Present/bio_10m/",
                              full.names = TRUE, pattern = ".bil")
   bioclim.pres <- stack(bioclim.pres)
+  bioclim.pres <- aggregate(bioclim.pres, fact = 3, fun = mean)
   bioclim.pres <- crop_bioregions(bioclim.pres)
   bioclim.pres
 }
