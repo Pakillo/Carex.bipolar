@@ -1,6 +1,6 @@
 Package: Carex.bipolar
 Title: SDM analyses of bipolar Carex species
-Version: 0.0.4
+Version: 0.0.7
 Authors@R: person('Francisco', 'Rodriguez-Sanchez', email='f.rodriguez.sanc@gmail.com', role = c('aut', 'cre'))
 Description: Code used for SDM analyses of bipolar Carex species in 
     Villaverde T, González-Moreno P, Rodríguez-Sánchez F & Escudero M. 
@@ -11,19 +11,18 @@ License: CC-BY 4.0
 Encoding: UTF-8
 LazyData: true
 Imports:
+    devtools,
     dismo,
     dplyr,
     gtools,
+    knitr,
     raster,
     rasterVis,
     readr,
-    rnaturalearth,
-    rSDM
-Suggests: 
-    devtools,
-    knitr,
     rmarkdown,
-    rprojroot
+    rnaturalearth,
+    rprojroot,
+    rSDM
 URL: https://github.com/Pakillo/Carex.bipolar
 BugReports: https://github.com/Pakillo/Carex.bipolar/issues
 RoxygenNote: 6.0.1
