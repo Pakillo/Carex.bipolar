@@ -8,7 +8,7 @@ output: pdf_document
 ```{r setup, include=FALSE}
 library(knitr)
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
-knitr::opts_knit$set(root.dir = "../")
+root <- rprojroot::find_rstudio_root_file()
 ```
 
 ```{r}
@@ -24,15 +24,17 @@ ne.redux <- aggregate(ne, fact = 8)
 
 
 ```{r}
-load("../data/regions.rda")
+data(regions)
 #plot(regions, add = TRUE, border = "black")
 ```
 
 ```{r}
-locs <- as.data.frame(readr::read_csv("../data/locs_30m.csv"))
+locs <- as.data.frame(readr::read_csv(paste0(root, "/data/locs_30m.csv")))
 coordinates(locs) <- c("longitude", "latitude")
 projection(locs) <- CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
 #plot(locs, add = TRUE)
+# rSDM::occmap(locs[locs$species == "macloviana", ])
+# rSDM::occmap(locs[locs$species == "maritima", ])
 ```
 
 
@@ -49,7 +51,7 @@ spp <- c("maritima", "microglochin", "canescens", "magellanica", "macloviana")
 for (i in 1:5) {
   points(locs[locs$species == spp[i], ], pch = 21, bg = mypal[i], col = "gray20", cex = 1)
 }
-legend(x = -160, y = 10, legend = sort(spp), pt.bg = mypal,
+legend(x = -160, y = 10, legend = spp, pt.bg = mypal,
        pch = 21, box.col = "white", title = "Carex species", bg = "white")
 dev.off()
 
