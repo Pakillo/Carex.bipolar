@@ -43,7 +43,7 @@ maxmod <- modeval@models[[which(modeval@results$settings == bestmodel)]]
 
 ## Response curves
 
-```{r fig.height=13}
+```{r out.height='13in'}
 response(maxmod)
 ```
 

@@ -1,51 +1,56 @@
 ---
-title: 'Fig. Future Suitability'
+title: 'Figs. Future Suitability'
 author: "Francisco Rodriguez-Sanchez"
 date: "`r Sys.Date()`"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-
-library(rprojroot)
-root <- find_rstudio_root_file()
+root <- rprojroot::find_rstudio_root_file()
 
 library(knitr)
-knitr::opts_chunk$set(echo = TRUE, cache = TRUE, 
+knitr::opts_chunk$set(echo = TRUE, out.height = '7in', out.width = '9in',
                       fig.path = paste0(root, "/manuscript/figures/"))
 ```
 
-```{r}
-library(raster)
-library(rasterVis)
+
+ 
+## RCP4.5
+
+### Mean suitability among the 5 climate models
+```{r rcp45_mean}
+rcp45.mean <- plot_ensemble("mean", "rcp45")
 ```
 
-
-```{r}
-library(rnaturalearth)
-borders <- ne_coastline(scale = 'small', returnclass = "sp")
+### SD suitability among the 5 climate models
+```{r rcp45_sd}
+rcp45.sd <- plot_ensemble("sd", "rcp45")
 ```
 
-
-```{r}
-spp <- c("canescens", "macloviana", "magellanica", "maritima", 
-         "microglochin", "allspp")
-all.preds <- lapply(spp, aggregate_preds)
-```
-
-
-```{r}
-futu.suitab <- stack(all.preds)
-names(futu.suitab) <- c(spp[1:5], "all species")
-
+### Difference Future - Present suitability
+```{r rcp45_diff}
+rcp45.diff <- compare_suitab_futu_pres(rcp45.mean)
 ```
 
 
 
-```{r Fig_suitab_future, out.height='7in', out.width='9in'}
-levelplot(futu.suitab, par.settings = viridisTheme, at = seq(0, 1, 0.1)) +
-  layer(sp.lines(borders, lwd = 0.8, col = 'darkgray'))
+## RCP8.5
+
+### Mean suitability among the 5 climate models
+```{r rcp85_mean}
+rcp85.mean <- plot_ensemble("mean", "rcp85")
 ```
+
+### SD suitability among the 5 climate models
+```{r rcp85_sd}
+rcp85.sd <- plot_ensemble("sd", "rcp85")
+```
+
+### Difference Future - Present suitability
+```{r rcp85_diff}
+rcp85.diff <- compare_suitab_futu_pres(rcp85.mean)
+```
+
 
 
 ```{r}

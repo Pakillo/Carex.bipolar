@@ -1,7 +1,7 @@
 
 
 library(Carex.bipolar)  # load to access package functions
-
+library(rmarkdown)
 
 ### Data prep (run only once) ###
 
@@ -9,8 +9,6 @@ library(Carex.bipolar)  # load to access package functions
 #source("data-raw/clip_bioregions.R")
 
 ############
-
-library(rmarkdown)
 
 spp <- c("allspp", "canescens", "macloviana", "magellanica", "maritima",
          "microglochin")
@@ -43,11 +41,7 @@ render("manuscript/figures/Fig1_occmap.Rmd")
 #### Fig Present Suitability ####
 render("manuscript/figures/Fig_suitability_present_code.Rmd")
 
-#### Fig Future Suitability ####
+#### Figs Future Suitability ####
 render("manuscript/figures/Fig_suitability_2050_code.Rmd")
 
 
-
-## Calculate SD of predictions for RCP4.5 and RCP8.5 (Suppl Fig)
-
-## Calculate difference Future - Present for both RCP4.5 and RCP8.5 (based on mean) - Suppl Fig
