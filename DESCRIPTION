@@ -6,11 +6,12 @@ Description: Code used for SDM analyses of bipolar Carex species in
     Villaverde T, González-Moreno P, Rodríguez-Sánchez F & Escudero M. 
     Niche shifts after long-distance dispersal events in bipolar sedges 
     (*Carex*, Cyperaceae).
-Depends: R (>= 3.3.3)
+Depends: R (>= 3.4.1)
 License: CC-BY 4.0
 Encoding: UTF-8
 LazyData: true
 Imports:
+    checkpoint,
     devtools,
     dismo,
     dplyr,
@@ -23,8 +24,7 @@ Imports:
     rnaturalearth,
     rprojroot,
     rSDM
-Suggests:
-    checkpoint
+Remotes: Pakillo/rSDM@2ca5a85
 URL: https://github.com/Pakillo/Carex.bipolar
 BugReports: https://github.com/Pakillo/Carex.bipolar/issues
 RoxygenNote: 6.0.1
