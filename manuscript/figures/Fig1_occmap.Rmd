@@ -44,6 +44,7 @@ library(RColorBrewer)
 mypal <- brewer.pal(5, "Set1")
 
 pdf("figures/Fig1.pdf", paper = "a4")
+#svglite::svglite("manuscript/figures/Fig1.svg", width = 9, height = 11)
 plotRGB(ne.redux)
 plot(regions, add = TRUE, border = "dim gray", lwd = 2)
 #spp <- unique(locs$species)
