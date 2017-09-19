@@ -1,14 +1,33 @@
 
+##### INSTALLING AND LOADING PACKAGE ####
+
+#if (!require(Carex.bipolar)) devtools::install_github("Pakillo/Carex.bipolar")
 
 library(Carex.bipolar)  # load to access package functions
-library(rmarkdown)
+
+
+#### RECREATE PACKAGE ENVIRONMENT ######################
+
+## Uncomment line below to recreate package environment for that date ##
+# recreate_packages(date = "2017-09-19")
+
+# Use delete_packages to delete the folder containing these package versions afterwards
+# delete_packages()
+
+# R version used: 3.4.1
+# Restart R session to come back to standard user library afterwards
+
+
+
+
+#######################################################
 
 ### Data prep (run only once) ###
 
 #source("data-raw/dataprep.R")
 #source("data-raw/clip_bioregions.R")
 
-############
+###################################################
 
 spp <- c("allspp", "canescens", "macloviana", "magellanica", "maritima",
          "microglochin")

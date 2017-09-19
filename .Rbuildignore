@@ -3,5 +3,6 @@
 ^README\.Rmd$
 ^data-raw$
 
-^analyses$ 
-^manuscript$ 
+^analyses$
+^manuscript$
+^dependencies$
