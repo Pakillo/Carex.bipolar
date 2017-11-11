@@ -6,3 +6,4 @@
 ^analyses$
 ^manuscript$
 ^dependencies$
+^\.travis\.yml$
