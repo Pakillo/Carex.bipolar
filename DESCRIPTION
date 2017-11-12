@@ -7,7 +7,7 @@ Description: Code used for SDM analyses of bipolar Carex species in
     Niche shifts after long-distance dispersal events in bipolar sedges 
     (*Carex*, Cyperaceae).
 Depends: R (>= 3.4.1)
-License: CC-BY 4.0
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:

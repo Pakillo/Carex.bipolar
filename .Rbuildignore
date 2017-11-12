@@ -7,3 +7,5 @@
 ^manuscript$
 ^dependencies$
 ^\.travis\.yml$
+makefile.R
+^LICENSE\.md$
