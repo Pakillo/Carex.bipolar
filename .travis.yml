@@ -4,6 +4,8 @@ language: R
 sudo: required
 cache: packages
 
+warnings_are_errors: false
+
 dist: trusty
 
 before_install:
