@@ -29,6 +29,7 @@ read_presclim <- function() {
 #' @export
 #' @import raster
 #' @importFrom gtools mixedsort
+#' @importFrom utils unzip
 read_futclim <- function(gcmdata) {  # e.g. miroc <- read_futclim("miroc5_rcp45_bio_2050")
 
   ras <- stack(gtools::mixedsort(
@@ -179,6 +180,7 @@ ensemble_mean <- function(species, scenario) {
 #' @import raster
 #' @import rasterVis
 #' @importFrom rprojroot find_rstudio_root_file
+#' @importFrom stats sd
 ensemble_sd <- function(species, scenario) {
 
   root <- rprojroot::find_rstudio_root_file()
@@ -269,6 +271,8 @@ compare_suitab_futu_pres <- function(futu.suitab) {
 #' @export
 #' @importFrom rnaturalearth ne_coastline
 #' @import rasterVis
+#' @import sp
+#' @importFrom latticeExtra layer
 #'
 plot6maps <- function(ras, maptype) {
 
