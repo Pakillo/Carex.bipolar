@@ -225,7 +225,7 @@ plot_ensemble <- function(mean.sd, scenario) {
 
   if (mean.sd == "sd") {
     all.preds <- lapply(spp, ensemble_sd, scenario)
-    maptype = "sd"
+    maptype <- "sd"
   }
 
   futu.suitab <- stack(all.preds)

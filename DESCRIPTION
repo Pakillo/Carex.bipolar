@@ -17,13 +17,15 @@ Imports:
     dplyr,
     gtools,
     knitr,
+    latticeExtra,
     raster,
     rasterVis,
     readr,
     rmarkdown,
     rnaturalearth,
     rprojroot,
-    rSDM
+    rSDM,
+    sp
 Remotes: Pakillo/rSDM@2ca5a85
 URL: https://github.com/Pakillo/Carex.bipolar
 BugReports: https://github.com/Pakillo/Carex.bipolar/issues

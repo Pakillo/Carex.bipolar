@@ -8,11 +8,20 @@ library(Carex.bipolar)  # load to access package functions
 
 #### RECREATE PACKAGE ENVIRONMENT ######################
 
-## Uncomment line below to recreate package environment for that date ##
-# recreate_packages(date = "2017-09-19")
+good.date <- "2017-09-19"
 
-# Use delete_packages to delete the folder containing these package versions afterwards
-# delete_packages()
+## Run line below to recreate package environment for that date ##
+## Packages will be downloaded to a local folder ("~/.checkpoint")
+# checkpoint::checkpoint(snapshotDate = good.date, use.knitr = TRUE)
+
+
+## Now install other external packages (not on CRAN)
+## NB. pkgs installed to .libPaths() = "~/.checkpoint"
+## so this doesn't mess with local user library
+# install.packages("dependencies/rSDM_0.3.7.tar.gz", repos = NULL, type = "source")
+
+# Run line below to delete the folder ("~/.checkpoint") containing these package versions
+# unlink("~/.checkpoint", recursive = FALSE)
 
 # R version used: 3.4.1
 # Restart R session to come back to standard user library afterwards
@@ -28,6 +37,9 @@ library(Carex.bipolar)  # load to access package functions
 #source("data-raw/clip_bioregions.R")
 
 ###################################################
+
+
+### ANALYSES ####
 
 spp <- c("allspp", "canescens", "macloviana", "magellanica", "maritima",
          "microglochin")
