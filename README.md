@@ -1,6 +1,6 @@
 SDM analysis of *Carex* bipolar species
 ================
-2017-11-13
+2017-11-15
 
 [![DOI](https://zenodo.org/badge/89584660.svg)](https://zenodo.org/badge/latestdoi/89584660)
 
@@ -26,6 +26,6 @@ devtools::install_github("Pakillo/Carex.bipolar")
 Usage
 -----
 
-There is a [`makefile.R`](https://github.com/Pakillo/Carex.bipolar/blob/master/makefile.R) that runs each analysis in the appropriate order.
+There is a [`makefile.R`](https://github.com/Pakillo/Carex.bipolar/blob/master/makefile.R) that runs each analysis in the appropriate order. Note these analyses use many GIS layers stored locally. To be able to reproduce the analyses you will then need to download those files and adapt the code to your local path.
 
 A more user-friendly version of the functions and analyses can be browsed at <https://pakillo.github.io/Carex.bipolar/index.html>.
