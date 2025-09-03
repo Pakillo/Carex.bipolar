@@ -20,47 +20,48 @@ library(leaflet)
 
 ```{r}
 occs <- as.data.frame(readr::read_csv(file.path(root, "data/locs_30m.csv")))
+occs <- locs2sf(occs)
 ```
 
 
 ## All species
 ```{r}
-occmap(occs, bg = 'leaflet', pcol = "black") %>%
+occmap(occs, type = 'leaflet', pcol = "black") %>%
   addProviderTiles(providers$OpenStreetMap)
 ```
 
 
 ## C. macloviana
 ```{r}
-occmap(occs[occs$species == "macloviana", ], bg = "leaflet", pcol = "black") %>%
+occmap(occs[occs$species == "macloviana", ], type = "leaflet", pcol = "black") %>%
   addProviderTiles(providers$OpenStreetMap)
 ```
 
 
 ## C. magellanica
 ```{r}
-occmap(occs[occs$species == "magellanica", ], bg = "leaflet", pcol = "black") %>%
+occmap(occs[occs$species == "magellanica", ], type = "leaflet", pcol = "black") %>%
   addProviderTiles(providers$OpenStreetMap)
 ```
 
 
 ## C. microglochin
 ```{r}
-occmap(occs[occs$species == "microglochin", ], bg = "leaflet", pcol = "black") %>%
+occmap(occs[occs$species == "microglochin", ], type = "leaflet", pcol = "black") %>%
   addProviderTiles(providers$OpenStreetMap)
 ```
 
 
 ## C. canescens
 ```{r}
-occmap(occs[occs$species == "canescens", ], bg = "leaflet", pcol = "black") %>%
+occmap(occs[occs$species == "canescens", ], type = "leaflet", pcol = "black") %>%
   addProviderTiles(providers$OpenStreetMap)
 ```
 
 
 ## C. maritima
 ```{r}
-occmap(occs[occs$species == "maritima", ], bg = "leaflet", pcol = "black") %>%
+occmap(occs[occs$species == "maritima", ], type = "leaflet", pcol = "black") %>%
   addProviderTiles(providers$OpenStreetMap)
 ```
 
